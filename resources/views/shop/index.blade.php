@@ -20,6 +20,7 @@
                 @include('components.product-card', [
                     'product' => $product,
                     'index'   => $loop->index,
+                    
                 ])
             @empty
                 <div class="col-span-full">
