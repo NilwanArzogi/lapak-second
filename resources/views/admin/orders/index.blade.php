@@ -63,9 +63,9 @@
                             <select name="status" class="form-select"
                                     style="padding:0.35rem 0.6rem; font-size:0.78rem; width:auto;"
                                     onchange="this.form.submit()">
-                                <option value="sukses"     {{ $order->status === 'sukses'     ? 'selected' : '' }}>✅ Sukses</option>
-                                <option value="pending"    {{ $order->status === 'pending'    ? 'selected' : '' }}>⏳ Pending</option>
-                                <option value="dibatalkan" {{ $order->status === 'dibatalkan' ? 'selected' : '' }}>❌ Dibatalkan</option>
+                                <option value="sukses"     {{ $order->status === 'sukses'     ? 'selected' : '' }}>Sukses</option>
+                                <option value="pending"    {{ $order->status === 'pending'    ? 'selected' : '' }}>Pending</option>
+                                <option value="dibatalkan" {{ $order->status === 'dibatalkan' ? 'selected' : '' }}>Dibatalkan</option>
                             </select>
                         </form>
                     </td>

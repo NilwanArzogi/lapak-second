@@ -10,6 +10,7 @@ class Order extends Model
         'nama_pembeli',
         'email',
         'nomor_hp',
+        'alamat',           // ← tambahan
         'item_pesanan',
         'total_harga',
         'metode_pembayaran',
@@ -17,6 +18,6 @@ class Order extends Model
     ];
 
     protected $casts = [
-        'item_pesanan' => 'array', // otomatis decode JSON jadi array
+        'item_pesanan' => 'array',
     ];
 }

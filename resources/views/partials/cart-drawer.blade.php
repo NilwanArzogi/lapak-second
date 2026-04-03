@@ -20,19 +20,12 @@
 
         {{-- Body --}}
         <div class="drawer-body">
-
-            {{-- 1. Cart Items --}}
             @include('partials.cart-items')
-
-            {{-- 2. Buyer Info --}}
             @include('partials.buyer-form')
-
-            {{-- 3. Payment Method --}}
             @include('partials.payment-methods')
-
         </div>
 
-        {{-- Footer: Total + Checkout --}}
+        {{-- Footer --}}
         <div class="drawer-footer">
             <div class="total-row">
                 <span class="total-label">Total Pembayaran</span>
@@ -40,9 +33,10 @@
                       x-text="'Rp ' + total.toLocaleString('id-ID')">
                 </span>
             </div>
+            {{-- Tambahkan !customer.alamat ke disabled --}}
             <button class="checkout-btn"
                     @click="checkout()"
-                    :disabled="cart.length === 0 || !customer.name || !customer.phone || !selectedPayment">
+                    :disabled="cart.length === 0 || !customer.name || !customer.phone || !customer.alamat || !selectedPayment">
                 <i class="fas fa-circle-check"></i>
                 Konfirmasi Pesanan
             </button>
