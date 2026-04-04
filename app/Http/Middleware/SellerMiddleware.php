@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminMiddleware
+class SellerMiddleware
 {
     public function handle(Request $request, Closure $next): mixed
     {
@@ -14,8 +14,9 @@ class AdminMiddleware
             return redirect()->route('login');
         }
 
-        if (!Auth::user()->isAdmin()) {
-            abort(403, 'Halaman ini khusus Admin.');
+        // Admin juga boleh akses halaman seller
+        if (!Auth::user()->isAdminOrSeller()) {
+            abort(403, 'Halaman ini khusus Seller dan Admin.');
         }
 
         return $next($request);

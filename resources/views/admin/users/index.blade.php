@@ -34,9 +34,9 @@
 
                     <td>
                         <div style="display:flex; align-items:center; gap:0.75rem;">
-                            {{-- Avatar --}}
                             @if($user->avatar)
-                                <img src="{{ $user->avatar }}" style="width:36px;height:36px;border-radius:10px;object-fit:cover;">
+                                <img src="{{ $user->avatar }}"
+                                     style="width:36px;height:36px;border-radius:10px;object-fit:cover;">
                             @else
                                 <div style="width:36px;height:36px;border-radius:10px;background:var(--accent-gl);color:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;">
                                     {{ strtoupper(substr($user->name, 0, 1)) }}
@@ -51,28 +51,26 @@
 
                     <td>
                         @if($user->google_id)
-                            <span class="badge badge-blue">
-                                <i class="fab fa-google" style="font-size:0.65rem;"></i> Google
-                            </span>
+                            <span class="badge badge-blue"><i class="fab fa-google" style="font-size:0.65rem;"></i> Google</span>
                         @else
-                            <span class="badge badge-purple">
-                                <i class="fas fa-envelope" style="font-size:0.65rem;"></i> Email
-                            </span>
+                            <span class="badge badge-purple"><i class="fas fa-envelope" style="font-size:0.65rem;"></i> Email</span>
                         @endif
                     </td>
 
                     <td>
-                        {{-- Inline role update --}}
+                        {{-- Inline role update dengan 3 pilihan --}}
                         <form method="POST" action="{{ route('admin.users.update', $user) }}">
                             @csrf @method('PUT')
                             <input type="hidden" name="name"  value="{{ $user->name }}">
                             <input type="hidden" name="email" value="{{ $user->email }}">
-                            <select name="role" class="form-select"
+                            <select name="role"
+                                    class="form-select"
                                     style="padding:0.35rem 0.6rem; font-size:0.78rem; width:auto;"
                                     onchange="this.form.submit()"
                                     {{ $user->id === auth()->id() ? 'disabled' : '' }}>
-                                <option value="user"  {{ $user->role === 'user'  ? 'selected' : '' }}>User</option>
-                                <option value="admin" {{ $user->role === 'admin' ? 'selected' : '' }}>Admin</option>
+                                <option value="user"   {{ $user->role === 'user'   ? 'selected' : '' }}>👤 User</option>
+                                <option value="seller" {{ $user->role === 'seller' ? 'selected' : '' }}>🏪 Seller</option>
+                                <option value="admin"  {{ $user->role === 'admin'  ? 'selected' : '' }}>⚡ Admin</option>
                             </select>
                         </form>
                     </td>
