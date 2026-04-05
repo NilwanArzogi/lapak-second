@@ -11,12 +11,12 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        // Daftarkan Policy
         Gate::policy(Product::class, ProductPolicy::class);
 
-        // Gate shortcut untuk cek role di Blade
-        Gate::define('admin',  fn($user) => $user->isAdmin());
-        Gate::define('seller', fn($user) => $user->isSeller());
-        Gate::define('admin-or-seller', fn($user) => $user->isAdminOrSeller());
+        // Gate shortcut untuk Blade
+        Gate::define('admin',           fn($u) => $u->isAdmin());
+        Gate::define('seller',          fn($u) => $u->isSeller());
+        Gate::define('affiliate',       fn($u) => $u->isAffiliate());
+        Gate::define('admin-or-seller', fn($u) => $u->isAdminOrSeller());
     }
 }

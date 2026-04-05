@@ -4,16 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
+    use AuthorizesRequests; // ← di sini, tepat setelah buka class
+
     public function index()
     {
         $this->authorize('viewAny', Product::class);
 
-        // Admin lihat semua, Seller hanya miliknya
         $products = auth()->user()->isAdmin()
             ? Product::with('seller')->latest()->paginate(10)
             : Product::ownedBy(auth()->user())->latest()->paginate(10);
@@ -40,7 +42,7 @@ class ProductController extends Controller
         ]);
 
         $data = $request->only(['nama_barang', 'harga', 'kondisi', 'deskripsi']);
-        $data['seller_id'] = auth()->id(); // otomatis assign ke user yang login
+        $data['seller_id'] = auth()->id();
 
         if ($request->hasFile('gambar')) {
             $data['gambar'] = $request->file('gambar')->store('products', 'public');
