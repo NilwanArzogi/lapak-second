@@ -1,10 +1,9 @@
 {{--
-    Hero Section Component
+    Hero Section Component - dengan search bar terintegrasi
     Usage: @include('components.hero')
 --}}
 
 <header class="hero">
-    {{-- Background blobs --}}
     <div class="hero-bg-blob purple"></div>
     <div class="hero-bg-blob lime"></div>
 
@@ -21,6 +20,9 @@
             Smartphone, laptop, dan aksesoris bekas berkualitas.
             Diperiksa, terverifikasi, siap dipakai.
         </p>
+
+        {{-- ★ Search Bar di Hero ★ --}}
+        @include('components.search-bar')
 
     </div>
 </header>

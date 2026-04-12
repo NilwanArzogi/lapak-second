@@ -1,4 +1,7 @@
 <style>
+
+    @include('partials.search-styles')
+    
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -367,3 +370,4 @@
         nav.main-nav { padding: 0 1rem; }
     }
 </style>
+
